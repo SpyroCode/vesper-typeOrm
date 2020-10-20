@@ -1,35 +1,35 @@
 import { Controller, Query, Mutation } from 'vesper';
 import { EntityManager } from 'typeorm';
-import { Post } from "../entity/Post";
+import { User } from "../entity/User";
 
 @Controller()
-export class PostController {
+export class UserController {
   constructor(private entityManager: EntityManager) {
   }
 
   // serves "posts: [Post]" requests
   @Query()
-  posts() {
-    return this.entityManager.find(Post);
+  users() {
+    return this.entityManager.find(User);
   }
 
   // serves "post(id: Int): Post" requests
   @Query()
-  post({ id }) {
-    return this.entityManager.findOne(Post, id);
+  user({ id }) {
+    return this.entityManager.findOne(User, id);
   }
 
   // serves "postSave(id: Int, title: String, text: String): Post" requests
   @Mutation()
-  postSave(args) {
-    const post = this.entityManager.create(Post, args);
-    return this.entityManager.save(Post, post);
+  userSave(args) {
+    const post = this.entityManager.create(User, args);
+    return this.entityManager.save(User, post);
   }
 
   // serves "postDelete(id: Int): Boolean" requests
   @Mutation()
-  async postDelete({ id }) {
-    await this.entityManager.remove(Post, { id: id });
+  async userDelete({ id }) {
+    await this.entityManager.remove(User, { id: id });
     return true;
   }
 }

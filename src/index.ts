@@ -1,10 +1,12 @@
-import { bootstrap } from "vesper";
+import { bootstrap } from 'vesper';
 import { PostController } from "./controller/PostController";
+import { UserController } from './controller/UserController';
 
 bootstrap({
   port: 3000,
   controllers: [
     PostController,
+    UserController
   ],
   schemas: [
     __dirname + "/schema/**/*.graphql",
